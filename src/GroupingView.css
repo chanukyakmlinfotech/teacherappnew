@@ -1,0 +1,193 @@
+.grouping-view {
+  width: 700px; /* Adjust the width as needed */
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-height: 85%;
+  overflow-y: auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+}
+
+.grouping-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.grouping-options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.grouping-mode-button {
+  padding: 10px 16px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #cccccc;
+}
+
+.grouping-mode-button.active {
+  background-color: #f48871;
+}
+
+.grouping-search-group-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.group-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.group-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #cccccc;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.group-button.selected {
+  background-color: #f8ab01;
+}
+
+.group-button input[type="radio"] {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.group-button input[type="radio"]:checked {
+  border-color: none;
+}
+
+.radio-color-1 {
+  background-color: #f99554;
+}
+
+.radio-color-2 {
+  background-color: #e9d530;
+}
+
+.radio-color-3 {
+  background-color: #8a3ffd;
+}
+
+.radio-color-4 {
+  background-color: #70c7ce;
+}
+
+.radio-color-5 {
+  background-color: #9174fa;
+}
+
+.students-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.student-item {
+  display: flex;
+  justify-content: flex-start; /* Align items to the start (left) */
+  align-items: center;
+  width: 50%; /* Set width to 50% of the page */
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.student-info {
+  margin-right: 10px; /* Space between student name and dropdown */
+}
+
+.complete-button-container {
+  text-align: center;
+  margin-top: 20px; /* Adjust this value to move the button further down */
+}
+
+.complete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f85403;
+  color: white;
+  cursor: pointer;
+}
+
+.complete-button:hover {
+  background-color: #f85403;
+}
+
+.group-select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.grouping-search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.grouping-search input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.dropdown-picker {
+  width: 100%; /* Set to 100% to take full available width */
+  padding: 10px; /* Adjust padding to increase box size */
+  font-size: 16px; /* Increase font size for better readability */
+  border: 1px solid #ccc; /* Add border*/
+}
+
+.dropdown-header {
+  width: 100%; /* Ensure it takes up the full width */
+  height: 37px; /* Adjust the height to your desired size */
+  padding: 10px; /* Adjust padding for better spacing */
+  font-size: 13px; /* Adjust font size as needed */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 6px; /* Add border radius for rounded corners */
+  background-color:null; /* Background color */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}

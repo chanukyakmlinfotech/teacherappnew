@@ -1,0 +1,46 @@
+.grouping-header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+}
+
+.grouping-image {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  margin-right: 8px; /* Adjust as needed */
+}
+
+.grouping-title {
+  font-size: 20px;
+  color: #ee6a7d;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Push buttons to the right */
+}
+
+.clear-button {
+  
+  border: none;
+  cursor: pointer;
+  margin-right: 38px; /* Adjust as needed */
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px; /* Increased margin to move the button to the right */
+  top: 30px;
+}
+
+.close-button img {
+  width: 15px; /* Adjust as needed */
+  height: 15px; /* Adjust as needed */
+}

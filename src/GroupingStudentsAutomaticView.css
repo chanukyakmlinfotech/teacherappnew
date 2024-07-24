@@ -1,0 +1,47 @@
+.students-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: none !important; /* Force remove border */
+  background-color: #f8fbfa; /* Change the background color */
+  margin-left: 5px;
+}
+
+.student-item {
+  display: flex;
+  justify-content: flex-start; /* Align items to the start (left) */
+  align-items: center;
+  width: 100%; /* Set width to 50% of the page */
+  padding: 10px;
+  border: none !important; /* Force remove border */
+  border-radius: 5px;
+  background-color: #f8fbfa;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow for better visibility */
+}
+
+.dot-button {
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: #fe924d; /* Default color */
+  margin-right: 5px; /* Space between dot and student name */
+}
+
+.student-info {
+  margin-right: 10px; /* Space between student name and dropdown */
+}
+
+.group-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9fbfd;
+}
+
+.status {
+  font-size: 12px;
+  color: #999;
+}
+.status.offline {
+  color: red;
+}

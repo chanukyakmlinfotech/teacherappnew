@@ -1,0 +1,112 @@
+/* Styles for the scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.student-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: 140px;
+  padding: 1px;
+  width: 77%;
+  max-height: 68vh;
+  margin-right: 95px;
+}
+
+.student-cards-container > div {
+  width: 20%;
+}
+
+body {
+  background-color: #f5f6fa;
+}
+.screenshot {
+  width: 100%;
+  height: auto;
+  max-height: 150px; /* Adjust as needed */
+  margin-top: 10px;
+}
+.grouping-button {
+  margin-top: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: fixed;
+  top: 180px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 1000; /* Ensure it stays above other elements */
+  width: 60px; /* Adjust width as needed */
+  height: 60px; /* Adjust height as needed */
+  padding: 0; /* Remove padding */
+}
+
+.grouping-button img {
+  width: 100%; /* Make the image fill the button */
+  height: 100%; /* Make the image fill the button */
+  object-fit: cover; /* Ensure the image covers the button without distortion */
+}
+
+.grouping-view {
+  width: 80%; /* Adjust the width as needed */
+  height: 90vh; /* Adjust the height as needed */
+  max-width: 1200px; /* Optional: set a maximum width */
+  max-height: 800px; /* Optional: set a maximum height */
+  margin: 0 auto; /* Center the component horizontally */
+  padding: 20px; /* Optional: add some padding */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  background-color: #f5f5f5; /* Optional: set a background color */
+  border: 1px solid #ccc; /* Optional: add a border */
+  border-radius: 10px; /* Optional: add rounded corners */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Optional: add some responsive adjustments */
+@media (max-width: 468px) {
+  .grouping-view {
+    width: 60%;
+    height: 80vh;
+  }
+}
+
+@media (max-width: 250px) {
+  .grouping-view {
+    width: 95%;
+    height: 70vh;
+  }
+}
+.complete-button {
+  margin-top: 230px; /* Adjust the top margin as needed */
+  margin-left: 10px; /* Adjust the left margin as needed */
+  padding: 10px 20px; /* Optional: adjust padding */
+  background-color: #4CAF50; /* Optional: set a background color */
+  color: white; /* Optional: set text color */
+  border: none; /* Optional: remove border */
+  border-radius: 5px; /* Optional: add rounded corners */
+  cursor: pointer; /* Optional: change cursor on hover */
+}
+
+.complete-button:hover {
+  background-color: #45a049; /* Optional: set background color on hover */
+}
