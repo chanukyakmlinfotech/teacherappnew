@@ -51,16 +51,22 @@ const StudentCard = ({ username, deviceType, isOnline, isLocked, handleLock, han
         <img src={img8} alt="Close" className="close-button1" style={{ width: '15px', height: '15px' }} />
       </div>
       <div className="username">{username}</div>
-      <div className={`inner-container ${isLocked ? 'locked' : ''}`} style={{ pointerEvents: isLocked ? 'none' : 'auto', opacity: isLocked ? 0.5 : 1 }}>
+      <div 
+            className={`inner-container ${isLocked ? 'locked' : ''}`} 
+            style={{ 
+                pointerEvents: isLocked ? 'none' : 'auto', 
+                opacity: isLocked ? 0.5 : 1,
+                backgroundColor: isLocked ? 'rgba(0, 0, 0, 0.5)' : 'initial' // or your default background color
+            }}>
         {screenshot && <img src={screenshot} alt="Student Screenshot" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
       </div>
       <div className="group-name">
         {group && <span>Group {group}</span>}
       </div>
       <div className="action-icons">
-        <img src={img1} style={{ margin: '-20px 9px -10px' }} alt={isLocked ? 'Unlock' : 'Lock'} onClick={toggleLock} />
-        <img src={img3} style={{ margin: '-20px 9px -10px -40px' }} alt="Search" onClick={handleOpenMagnifier} />
-        <img src={img4} style={{ margin: '-20px 9px -10px -40px' }} alt="Share" onClick={() => handleStartScreenSharing('https://example.com')} />
+        <img src={img1}  alt={isLocked ? 'Unlock' : 'Lock'} onClick={toggleLock} />
+        <img src={img3}  alt="Search" onClick={handleOpenMagnifier} />
+        <img src={img4}  alt="Share" onClick={() => handleStartScreenSharing('https://example.com')} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Modal from 'react-modal';
 import './StudentMagnifierView.css';
 import socketIOClient from 'socket.io-client';
@@ -14,47 +14,37 @@ const StudentMagnifierView = ({
   setRefresh,
   blockList,
   setBlockList,
-  isMonitoringOn,
 }) => {
-  const [studentUrl, setStudentUrl] = useState('');
   const [studentScreenshotUrl, setStudentScreenshotUrl] = useState('');
   const [activeTabUrl, setActiveTabUrl] = useState('');
+  const socketRef = useRef();
 
   useEffect(() => {
-    const socket = socketIOClient("https://socket.gto.to");
-
-    const fetchStudentUrl = () => {
-      if (magniferStudent) {
-        socket.emit('fetchStudentUrl', { id: magniferStudent.userID, teacher: "teacher@example.com" });
-      }
-    };
-
-    socket.on('studentUrlFetched', (data) => {
-      if (data.studentId === magniferStudent.id) {
-        setStudentUrl(data.url);
-      }
-    });
+    if (!socketRef.current) {
+      socketRef.current = socketIOClient("https://socket.gto.to");
+    }
 
     if (magniferStudent) {
-      fetchStudentUrl();
-
-      // Fetching Active Tab URL
-      fetch(`/api/student/${magniferStudent.id}/activetab`)
-        .then(response => response.json())
-        .then(data => {
+      // Fetch Active Tab URL using SignalingClient
+      socketRef.current.emit('getActiveTabUrl', { id: magniferStudent.userID }, (data) => {
+        console.log('Fetched Active Tab URL:', data.activeTab);
+        if (data.activeTab) {
           setActiveTabUrl(data.activeTab);
-        })
-        .catch(error => {
-          console.error('Error fetching Active Tab URL:', error);
-          setActiveTabUrl(''); // Handle error gracefully
-        });
+        } else {
+          console.error('Active Tab URL is empty or undefined');
+        }
+      });
 
       // Setting Screenshot
       setStudentScreenshotUrl(magniferStudent.screenshot);
     }
 
+    // Cleanup on component unmount
     return () => {
-      socket.disconnect();
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+        socketRef.current = null;
+      }
     };
   }, [magniferStudent, refresh]);
 
@@ -63,14 +53,52 @@ const StudentMagnifierView = ({
   };
 
   const blockStudent = async () => {
-    setBlockList([...blockList, magniferStudent.id]);
-    await fetch(`/api/student/${magniferStudent.id}/block`, { method: 'POST' });
-    setRefresh(!refresh);
+    try {
+      console.log('Attempting to block URL:', activeTabUrl);
+      if (!activeTabUrl || !isValidUrl(activeTabUrl)) {
+        console.error('Invalid URL detected:', activeTabUrl);
+        throw new Error('Invalid URL');
+      }
+      const url = new URL(activeTabUrl);
+      const domain = url.host;
+      const newBlockList = [...blockList, { url: `*://${domain}/*`, lock: true }];
+
+      setBlockList(newBlockList);
+
+      const list = newBlockList.filter(block => block.lock).map(block => block.url);
+
+      await socketRef.current.emit('dynamicBlockSites', { id: magniferStudent.userID, blocks: list });
+      await socketRef.current.emit('closeTheTab', { id: magniferStudent.userID, tab: activeTabUrl });
+
+      setRefresh(prev => prev + 1); // Trigger a re-render if necessary
+    } catch (error) {
+      console.error('Failed to block student:', error);
+    }
   };
 
   const closeStudentUrl = async () => {
-    await fetch(`/api/student/${magniferStudent.id}/close`, { method: 'POST' });
-    setRefresh(!refresh);
+    try {
+      console.log('Attempting to close URL:', activeTabUrl);
+      if (!activeTabUrl || !isValidUrl(activeTabUrl)) {
+        console.error('Invalid URL detected:', activeTabUrl);
+        throw new Error('Invalid URL');
+      }
+      await socketRef.current.emit('closeTheTab', { id: magniferStudent.userID, tab: activeTabUrl });
+
+      setRefresh(prev => prev + 1);
+    } catch (error) {
+      console.error('Failed to close URL:', error);
+    }
+  };
+
+  const isValidUrl = (string) => {
+    try {
+      new URL(string);
+      return true;
+    } catch (error) {
+      console.error('URL validation error:', error, 'URL:', string);
+      return false;
+    }
   };
 
   return (
@@ -98,12 +126,6 @@ const StudentMagnifierView = ({
             </a>
           )}
         </div>
-
-        {studentUrl && (
-          <div className="url-container">
-            <a href={studentUrl} target="_blank" rel="noopener noreferrer">{studentUrl}</a>
-          </div>
-        )}
 
         {activeTabUrl && (
           <div className="active-tab-container">

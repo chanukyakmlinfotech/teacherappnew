@@ -7,6 +7,11 @@ import ScreenShareView from './ScreenShareView';
 import socketIOClient from 'socket.io-client';
 import GroupingView from './GroupingView';
 import groupingbutton from './groupbutton.png'; // Update the path
+import AiYunfeiChatCreation from './AiYunfeiChatCreation'; // Ensure this path is correct
+import yunfieChatButton from './Ai-yunifiechat.png'; // Ensure this path is correct
+import YunfeiChatHistory from './YunfeiChatHistory'; // Ensure this path is correct
+import yunfieChathistoryButton from './AI-Yunfiehistory.png';
+import SignalingClient from './SignalingClient'; // Ensure this path is correct
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -20,6 +25,13 @@ function App() {
   const socketRef = useRef(null);
   const [isGroupingViewOpen, setIsGroupingViewOpen] = useState(false);
   const [filteredStudents, setFilteredStudents] = useState([]);
+  const [isAiYunfeichatOpen, setIsAiYunfeichatOpen] = useState(false);
+  const [isYunfeiChatHistoryOpen, setIsYunfeiChatHistoryOpen] = useState(false);
+  const [isOpenBrowsingHistoryPopup, setIsOpenBrowsingHistoryPopup] = useState(false);
+  const [chatHistory, setChatHistory] = useState([]); // Add state for chat history
+  const questionId = 'some-question-id';
+  const token = 'some-token';
+  
 
   useEffect(() => {
     if (!socketRef.current) {
@@ -80,15 +92,6 @@ function App() {
           )
         );
       });
-
-      socketRef.current.on('studentActiveTab', (obj) => {
-        console.log("studentActiveTab " + JSON.stringify(obj));
-        setStudents(prevStudents =>
-          prevStudents.map(student =>
-            student.userId === obj.id ? { ...student, activeTab: obj.activeTab } : student
-          )
-        );
-      });
     }
   }, [students]);
 
@@ -100,7 +103,7 @@ function App() {
       id: "t21@dev.gafeslam.com",
       device_type: "Windows",
       version: "9.10.33",
-      pin: "894908"
+      pin: "255403"
     });
     console.log("Emitting pin login event");
   };
@@ -153,22 +156,26 @@ function App() {
     setScreenShareUrl(url);
     setIsScreenSharing(true);
   };
-
-  const handleStopScreenSharing = () => {
-    setIsScreenSharing(false);
-    setIsGroupBroadcastStarted(false);
-  };
-
-  const handleStopBroadcast = () => {
-    setIsGroupBroadcastStarted(false);
-  };
-
+  
   const handleGroupingButtonClick = () => {
     const onlineStudents = students.filter(student => student.isOnline);
     setFilteredStudents(onlineStudents);
     setIsGroupingViewOpen(true);
   };
 
+  const handleOpenAiYunfeichat = () => {
+    setIsAiYunfeichatOpen(true);
+  };
+
+  const handleOpenBrowsingHistory = () => {
+    setIsOpenBrowsingHistoryPopup(true);
+  };
+
+  const handleProtocol = (protocolData) => {
+    socketRef.current.emit('startAiAssistant', protocolData);
+  };
+
+  
   return (
     <div className="App">
       {isScreenSharing ? (
@@ -184,6 +191,12 @@ function App() {
           <Header onlineCount={onlineCount} offlineCount={offlineCount} />
           <button onClick={handleGroupingButtonClick} className="grouping-button">
             <img src={groupingbutton} alt="Group" />
+          </button>
+          <button className="yunfeichatbutton" onClick={handleOpenAiYunfeichat}>
+            <img src={yunfieChatButton} alt="Yunfei Chat" />
+          </button>
+          <button className="browsing-history-button" onClick={handleOpenBrowsingHistory}>
+            <img src={yunfieChathistoryButton} alt="Browsing History" />
           </button>
           <div className="student-cards-container">
             {students.map((student, index) => (
@@ -219,6 +232,23 @@ function App() {
               students={filteredStudents}
               setIsGroupingViewOpen={setIsGroupingViewOpen}
               setStudents={setStudents} // Pass the setStudents function to update the main student list
+            />
+          )}
+          {isAiYunfeichatOpen && (
+            <AiYunfeiChatCreation
+              isOpen={isAiYunfeichatOpen}
+              setIsOpen={setIsAiYunfeichatOpen}
+              students={students}
+              yunfieList={[]}
+              sendProtocolToApp={handleProtocol} // Pass the protocol handler
+              questionId={questionId}
+              token={token}
+            />
+          )}
+          {isOpenBrowsingHistoryPopup && (
+            <YunfeiChatHistory
+              setIsOpen={setIsOpenBrowsingHistoryPopup}
+              chatHistory={chatHistory} // Pass chat history to the component
             />
           )}
         </>

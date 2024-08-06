@@ -57,8 +57,8 @@ body {
   top: 180px; /* Adjust as needed */
   right: 20px; /* Adjust as needed */
   z-index: 1000; /* Ensure it stays above other elements */
-  width: 60px; /* Adjust width as needed */
-  height: 60px; /* Adjust height as needed */
+  width: 80px; /* Adjust width as needed */
+  height: 80px; /* Adjust height as needed */
   padding: 0; /* Remove padding */
 }
 
@@ -109,4 +109,40 @@ body {
 
 .complete-button:hover {
   background-color: #45a049; /* Optional: set background color on hover */
+}
+
+.yunfeichatbutton {
+  position: fixed;
+  right: 20px; /* Adjust the right position as needed */
+  bottom: 180px; /* Move the image down by adjusting the bottom position */
+  width: 80px; /* Set the desired width */
+  height: 80px; /* Set the desired height */
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.yunfeichatbutton img {
+  width: 110%; /* Make the image fill the button */
+  height: 100%; /* Make the image fill the button */
+  object-fit: cover; /* Ensure the image covers the button without distortion */
+}
+
+.browsing-history-button {
+  position: absolute;
+  right: 20px; /* Adjust the right position as needed */
+  bottom: 100px; /* Adjust the bottom position as needed */
+  width: 80px; /* Set the desired width */
+  height: 80px; /* Set the desired height */
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+ 
+}
+
+.browsing-history-button img {
+  width: 120%; /* Make the image fill the button */
+  height: 100%; /* Make the image fill the button */
+  object-fit: cover; /* Ensure the image covers the button without distortion */
 }

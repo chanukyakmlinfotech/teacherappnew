@@ -1,6 +1,6 @@
 import React from 'react';
 import './GroupingHeaderView.css';
-import closeIcon from './close.png';
+import closeIcon from './GRclose.png';
 import groupingImage from './Grouping.png'; // Make sure you have the correct path for the image
 
 const GroupingHeaderView = ({ onClear, onClose }) => {

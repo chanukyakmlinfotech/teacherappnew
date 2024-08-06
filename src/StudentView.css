@@ -96,14 +96,14 @@ right: -175px; /* Adjust right position of close button */
 .student-card .action-icons {
   display: flex;
   justify-content: center;
-  margin-top: -16px; /* Reduce the margin-top */
+  margin-top: -20px; /* Reduce the margin-top */
   margin-right: -110px; /* Reduce the margin-right */
 }
 
 .student-card .action-icons img {
   margin: 0 5px; /* Reduce the horizontal margin */
-  width: 60px;
-  height: 60px;
+  width: 22px;
+  height: 22px;
 }
 
 /* StudentView.css */
@@ -117,7 +117,8 @@ right: -175px; /* Adjust right position of close button */
   width: 60px; /* Set the width to 30px */
   height: 21.33px; /* Set the height to 21.33px */
   font-size: 14px;
-  color: #f99554;
+  color: #b6b6b6;
   text-align: left; /* Keep text alignment as left */
   margin-top: 6px; /* Adjust margin-top if needed */
 }
+

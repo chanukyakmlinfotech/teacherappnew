@@ -1,0 +1,86 @@
+.chat-history-container {
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: -290px;
+  height: 70vh; /* Adjust this value to increase the height */
+  position: relative;
+  top: 20px;
+}
+
+.chatheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-icon {
+  width: 21px;
+  height: 11px;
+  margin-right: 10px;
+}
+
+.chathistory-title {
+  font-size: 18px;
+  color: #ff3366;
+  flex-grow: 1;
+  text-align: left;
+  font-weight: bold;
+}
+.Aiclose-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: -1px; /* Adjust this value to move the button up */
+}
+
+.close-ico {
+  width: 16px; /* Adjust the size as needed */
+  height: 16px; /* Adjust the size as needed */
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Aidropdown {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  min-width: 100px;
+  margin-right: 20px;
+  background-color: transparent;
+}
+
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.chat-message {
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 60%;
+  word-wrap: break-word;
+}
+
+.chat-message.teacher {
+  background-color: #e0f7fa;
+  align-self: flex-start;
+}
+
+.chat-message.student {
+  background-color: #ffe0b2;
+  align-self: flex-end;
+}

@@ -1,0 +1,213 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.ai-yunfei-chat-creation {
+  width: 60%; /* Increase the width to be 90% of the screen */
+  height: 70%; /* Increase the height to be 90% of the screen */
+  max-width: 1200px; /* Increase the maximum width */
+  max-height: 900px; /* Increase the maximum height */
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Aiheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 102%;
+  margin-bottom: 20px;
+}
+
+.Aiheader-icon {
+  width: 24px; /* Adjust the width of the header icon */
+  height: 24px; /* Adjust the height of the header icon */
+  margin-right: 10px; /* Adjust the margin as needed */
+  
+}
+
+.chat-title {
+  font-size: 12px;
+  color: #ff3366;
+  flex-grow: 1; /* This makes the title take up the remaining space */
+  text-align: left; /* Align the title text to the left */
+  font-weight: bold; /* This makes the text bold */
+}
+
+.AicloseIcon {
+  display: absolute;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  top: 99px;
+  margin-left: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%; /* Ensure the form takes the full height */
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 20px; /* Add some space below the dropdowns */
+}
+
+.form select {
+  flex-grow: 1; /* Allow the select element to grow */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  min-width: 100px; /* Ensure there is a minimum width */
+}
+
+.response-type {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align the content to the left */
+  width: 100%;
+  margin-bottom: 10px; /* Add spacing between response type and radio buttons */
+}
+
+.response-type-label {
+  font-weight: normal;
+  margin-bottom: 5px; /* Add spacing between label and radio buttons */
+}
+
+.radio-buttons {
+  display: flex;
+  justify-content: flex-start; /* Align radio buttons to the left */
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px; /* Reduce space below radio buttons */
+}
+
+.radio-buttons input[type="radio"] {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.radio-buttons input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #f59550; /* Custom background color */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto; /* Push the start button to the bottom */
+  margin-bottom: 50px; /* Reduce space below start button */
+}
+
+.start-button {
+  padding: 15px 30px; /* Adjust the padding for size */
+  font-size: 16px; /* Adjust the font size */
+  background-color: white;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: -70px; /* Move the start button up slightly */
+}
+
+.start-icon {
+  width: 120px; /* Adjust the width of the image */
+  height: 70px; /* Adjust the height of the image */
+  margin-right: 1px;
+  margin-bottom: 15px;
+  position: absolute;
+  z-index: 1;
+}
+
+.play-icon {
+  width: 20px; /* Adjust the width of the play icon */
+  height: 20px; /* Adjust the height of the play icon */
+  position: absolute;
+  top: 60%; /* Position the play icon in the center */
+  left: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Ensure the play icon is on top of the start icon */
+  
+}
+.start-button::after {
+  content: "Start";
+  position: absolute;
+  top: 60%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #e07b3f;
+  font-weight: bold;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
